@@ -53,7 +53,7 @@ outputs:
         - setuptools
         - numpy
         - cffi
-        - fenics-basix >=0.4.1,<0.5.0a0
+        - fenics-basix >=0.5.0,<0.6.0a0
         - fenics-ufl ==2022.1.*
     test:
       files:
