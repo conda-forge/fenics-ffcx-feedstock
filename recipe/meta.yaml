@@ -1,5 +1,5 @@
 {% set name = "fenics-ffcx-ufcx" %}
-{% set version = "0.5.0" %}
+{% set version = "0.5.0.post0" %}
 
 # pins are usually updated on minor bumps:
 # basix is currently co-versioned with ffcx
@@ -14,9 +14,9 @@ source:
   # PyPI sdist missing ufcx sources in 0.4.2. Should be fixed in 0.4.3
   # url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}{{ extra }}.tar.gz
   url: https://github.com/fenics/ffcx/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: 3413409e5885e41e220f99e0f95cc817e94c4931143d1f700c6e0c5e1bfad1f6
+  sha256: 039908c9998b51ba53e5deb3a97016062c262f0a4285218644304f7d3cd35882
 build:
-  number: 1
+  number: 0
   skip: true  # [win]
 
 outputs:
