@@ -1,17 +1,17 @@
-About fenics-ffcx
-=================
+About fenics-ffcx-feedstock
+===========================
+
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/fenics-ffcx-feedstock/blob/main/LICENSE.txt)
 
 Home: https://fenicsproject.org
 
 Package license: LGPL-3.0-or-later
 
-Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/fenics-ffcx-feedstock/blob/main/LICENSE.txt)
-
 Summary: The FEniCSx Form Compiler
 
 Development: https://github.com/fenics/ffcx
 
-Documentation: https://docs.fenicsproject.org/ffcx/v0.6.0/
+Documentation: https://docs.fenicsproject.org/ffcx/v0.7.0/
 
 FFCx is a new version of the FEniCS Form Compiler.
 It is being actively developed and is compatible with DOLFINx.
