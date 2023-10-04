@@ -1,5 +1,5 @@
 {% set name = "fenics-ffcx-ufcx" %}
-{% set version = "0.6.0" %}
+{% set version = "0.7.0" %}
 
 # pins are usually updated on minor bumps:
 # basix is currently co-versioned with ffcx
@@ -12,7 +12,7 @@ package:
 
 source:
   url: https://github.com/fenics/ffcx/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: 076fad61d406afffd41019ae1abf6da3f76406c035c772abad2156127667980e
+  sha256: 7f3c3ca91d63ce7831d37799cc19d0551bdcd275bdfa4c099711679533dd1c71
 build:
   number: 0
   skip: true  # [win]
