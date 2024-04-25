@@ -4,7 +4,7 @@
 # pins are usually updated on minor bumps:
 # basix is currently co-versioned with ffcx
 {% set major_minor = version.rsplit(".", 1)[0] %}
-{% set ufl_version = "2023.2" %}
+{% set ufl_version = "2023.3" %}
 
 package:
   name: {{ name|lower }}
