@@ -61,8 +61,8 @@ outputs:
         - fenics-basix {{ major_minor }}.*
         - fenics-ufl {{ ufl_version }}.*
     test:
-      files:
-        - test-ffcx
+      source_files:
+        - test
       requires:
         - pip
         - pytest >=6
@@ -71,7 +71,7 @@ outputs:
       imports:
         - ffcx
       commands:
-        - pytest -v test-ffcx
+        - pytest -v test/test_jit_expression.py
 
 about:
   home: https://fenicsproject.org
