@@ -4,7 +4,7 @@
 # pins are usually updated on minor bumps:
 # basix is currently co-versioned with ffcx
 {% set major_minor = version.rsplit(".", 1)[0] %}
-{% set ufl_version = "2023.3" %}
+{% set ufl_version = "2024.1" %}
 
 package:
   name: {{ name|lower }}
@@ -49,14 +49,14 @@ outputs:
       noarch: python
     requirements:
       host:
-        - python >=3.8
+        - python >=3.9
         - pip
         - setuptools >=62
         - wheel
       run:
-        - python >=3.8
+        - python >=3.9
         - setuptools
-        - numpy
+        - numpy >=1.21
         - cffi
         - fenics-basix {{ major_minor }}.*
         - fenics-ufl {{ ufl_version }}.*
