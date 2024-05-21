@@ -69,7 +69,7 @@ outputs:
         - setuptools
         - numpy >=1.21
         - cffi
-        - fenics-basix {{ major_minor }}.*
+        - fenics-basix 0.9.0.dev
         - fenics-ufl {{ ufl_version }}.*
     test:
       source_files:
