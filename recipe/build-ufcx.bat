@@ -1,7 +1,7 @@
 setlocal EnableDelayedExpansion
 
 cmake -G "NMake Makefiles" ^
-  -DCMAKE_INSTALL_PREFIX="${PREFIX}" ^
+  -DCMAKE_INSTALL_PREFIX="%PREFIX%" ^
   -DCMAKE_PREFIX_PATH:PATH="%LIBRARY_PREFIX%" ^
   -B build-dir ^
   -S cmake/
