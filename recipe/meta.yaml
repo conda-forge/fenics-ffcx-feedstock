@@ -26,14 +26,14 @@ outputs:
       noarch: generic
       ignore_run_exports:
         # we don't use the compiler, but cmake still needs it
-        - {{ compiler("c") }}  # [linux]
-        - {{ stdlib("c") }}  # [linux]
+        - {{ compiler("c") }}
+        - {{ stdlib("c") }}
     requirements:
       build:
         - cmake
         - make  # [not win]
-        - {{ compiler("c") }}  # [linux]
-        - {{ stdlib("c") }}    # [linux]
+        - {{ compiler("c") }}
+        - {{ stdlib("c") }}
       run:
         - __unix  # [not win]
         - __win  # [win]
@@ -48,7 +48,8 @@ outputs:
         - make
         - {{ compiler("cxx") }}
       commands:
-        - test -f ${PREFIX}/include/ufcx.h
+        - test -f ${PREFIX}/include/ufcx.h  # [not win]
+        - if not exist %LIBRARY_PREFIX%\include\ufcx.h  (exit 1)  # [win]
         - pkg-config --cflags ufcx
   - name: fenics-ffcx
     build:
