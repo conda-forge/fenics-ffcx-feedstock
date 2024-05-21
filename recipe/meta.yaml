@@ -1,5 +1,5 @@
 {% set name = "fenics-ffcx-ufcx" %}
-{% set version = "0.8.0" %}
+{% set version = "0.9.0.dev" %}
 
 # pins are usually updated on minor bumps:
 # basix is currently co-versioned with ffcx
@@ -11,28 +11,35 @@ package:
   version: {{ version }}
 
 source:
-  url: https://github.com/fenics/ffcx/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: 8a854782dbd119ec1c23c4522a2134d5281e7f1bd2f37d64489f75da055282e3
+  # url: https://github.com/fenics/ffcx/archive/refs/tags/v{{ version }}.tar.gz
+  # sha256: 8a854782dbd119ec1c23c4522a2134d5281e7f1bd2f37d64489f75da055282e3
+  url: https://github.com/fenics/ffcx/archive/f6be44b9b9ba65312600febb22d10e6acb951806.tar.gz
+
 build:
   number: 0
-  skip: true  # [win]
 
 outputs:
   - name: fenics-ufcx
-    script: build-ufcx.sh
+    script: build-ufcx.sh  # [not win]
+    script: build-ufcx.bat  # [win]
     build:
       noarch: generic
       ignore_run_exports:
         # we don't use the compiler, but cmake still needs it
         - {{ compiler("c") }}  # [linux]
+        - {{ stdlib("c") }}  # [linux]
     requirements:
       build:
         - cmake
-        - make
+        - make  # [not win]
         - {{ compiler("c") }}  # [linux]
         - {{ stdlib("c") }}    # [linux]
+      run:
+        - __unix  # [not win]
+        - __win  # [win]
     test:
-      script: test-ufcx.sh
+      script: test-ufcx.sh  # [not win]
+      script: test-ufcx.bat  # [win]
       files:
         - test-ufcx
       requires:
@@ -45,7 +52,8 @@ outputs:
         - pkg-config --cflags ufcx
   - name: fenics-ffcx
     build:
-      script: $PYTHON -m pip install -vv --no-deps .
+      script: build-ffcx-py.sh  # [not win]
+      script: build-ffcx-py.bat  # [win]
       noarch: python
     requirements:
       host:
@@ -59,6 +67,7 @@ outputs:
         - numpy >=1.21
         - cffi
         - fenics-basix {{ major_minor }}.*
+        - minrk/label/fenicsx-windows::fenics-basix
         - fenics-ufl {{ ufl_version }}.*
     test:
       source_files:
