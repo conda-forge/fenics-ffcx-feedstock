@@ -34,6 +34,9 @@ if !errorlevel! neq 0 exit /b !errorlevel!
 echo Running build setup
 CALL run_conda_forge_build_setup
 
+:: add my channel for debugging
+mamba.exe config --add channels minrk/label/fenics-windows
+
 
 if !errorlevel! neq 0 exit /b !errorlevel!
 
