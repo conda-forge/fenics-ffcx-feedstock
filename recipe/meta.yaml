@@ -67,7 +67,7 @@ outputs:
         - numpy >=1.21
         - cffi
         - fenics-basix {{ major_minor }}.*
-        - minrk/label/fenicsx-windows::fenics-basix
+        - minrk/label/fenics-windows::fenics-basix 0.9.0.dev
         - fenics-ufl {{ ufl_version }}.*
     test:
       source_files:
