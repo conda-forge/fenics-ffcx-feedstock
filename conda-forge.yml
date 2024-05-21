@@ -1,5 +1,6 @@
 azure:
   store_build_artifacts: true  
+channel_priority: flexible
 github:
   branch_name: main
   tooling_branch_name: main
