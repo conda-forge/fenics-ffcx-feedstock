@@ -46,6 +46,7 @@ source run_conda_forge_build_setup
 # make the build number clobber
 make_build_number "${FEEDSTOCK_ROOT}" "${RECIPE_ROOT}" "${CONFIG_FILE}"
 
+EXTRA_CB_OPTIONS="${EXTRA_CB_OPTIONS:-} -c minrk/label/fenics-windows"
 
 
 ( endgroup "Configuring conda" ) 2> /dev/null
