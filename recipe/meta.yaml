@@ -56,6 +56,8 @@ outputs:
     script: build-ffcx-py.bat  # [win]
     build:
       noarch: python
+      entry_points:
+        - ffcx = ffcx:__main__.main
     requirements:
       host:
         - python >=3.9
