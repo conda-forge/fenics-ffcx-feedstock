@@ -34,9 +34,6 @@ if !errorlevel! neq 0 exit /b !errorlevel!
 echo Running build setup
 CALL run_conda_forge_build_setup
 
-:: add my channel for debugging
-mamba.exe config --add channels minrk/label/fenics-windows
-
 
 if !errorlevel! neq 0 exit /b !errorlevel!
 
@@ -44,6 +41,9 @@ if EXIST LICENSE.txt (
     echo Copying feedstock license
     copy LICENSE.txt "recipe\\recipe-scripts-license.txt"
 )
+
+:: add my channel for debugging
+set "EXTRA_CB_OPTIONS=%EXTRA_CB_OPTIONS% -c minrk/label/fenics-windows"
 
 if NOT [%flow_run_id%] == [] (
     set "EXTRA_CB_OPTIONS=%EXTRA_CB_OPTIONS% --extra-meta flow_run_id=%flow_run_id% remote_url=%remote_url% sha=%sha%"
