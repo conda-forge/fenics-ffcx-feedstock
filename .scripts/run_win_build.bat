@@ -43,6 +43,7 @@ if EXIST LICENSE.txt (
 )
 
 :: add my channel for debugging
+conda.exe config --add channels minrk/label/fenics-windows
 set "EXTRA_CB_OPTIONS=%EXTRA_CB_OPTIONS% -c minrk/label/fenics-windows"
 
 if NOT [%flow_run_id%] == [] (
