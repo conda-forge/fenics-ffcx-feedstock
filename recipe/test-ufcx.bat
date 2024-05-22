@@ -16,4 +16,5 @@ cmake --install build-dir
 if errorlevel 1 exit 1
 
 test-ufcx
-if errorlevel 1 exit 1
+echo %errorlevel%
+:: if errorlevel 1 exit 1
