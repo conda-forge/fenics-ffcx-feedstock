@@ -48,6 +48,8 @@ make_build_number "${FEEDSTOCK_ROOT}" "${RECIPE_ROOT}" "${CONFIG_FILE}"
 
 EXTRA_CB_OPTIONS="${EXTRA_CB_OPTIONS:-} -c minrk/label/fenics-windows"
 command conda config --add channels minrk/label/fenics-windows
+command conda config --add channels conda-forge
+command conda config --remove channels defaults || true
 
 ( endgroup "Configuring conda" ) 2> /dev/null
 
