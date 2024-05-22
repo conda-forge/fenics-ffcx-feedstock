@@ -50,7 +50,7 @@ outputs:
       commands:
         - test -f ${PREFIX}/include/ufcx.h  # [not win]
         - if not exist %LIBRARY_PREFIX%\include\ufcx.h  (exit 1)  # [win]
-        - pkg-config --cflags ufcx
+        - pkg-config --cflags ufcx  # [not win]
   - name: fenics-ffcx
     script: build-ffcx-py.sh  # [not win]
     script: build-ffcx-py.bat  # [win]
