@@ -13,7 +13,7 @@ package:
 source:
   # url: https://github.com/fenics/ffcx/archive/refs/tags/v{{ version }}.tar.gz
   # sha256: 8a854782dbd119ec1c23c4522a2134d5281e7f1bd2f37d64489f75da055282e3
-  url: https://github.com/fenics/ffcx/archive/f6be44b9b9ba65312600febb22d10e6acb951806.tar.gz
+  url: https://github.com/fenics/ffcx/archive/d3ecb540f2a9761f09dfac6576f41300da06b7a6.tar.gz
 
 build:
   number: 0
@@ -76,13 +76,15 @@ outputs:
         - test
       requires:
         - pip
+        - numba
         - pytest >=6
+        - sympy
+        - pygraphviz
         - {{ compiler("c") }}
-        - {{ compiler("cxx") }}
       imports:
         - ffcx
       commands:
-        - pytest -v test/test_jit_expression.py
+        - pytest -v test
 
 about:
   home: https://fenicsproject.org
