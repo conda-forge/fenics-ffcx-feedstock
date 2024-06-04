@@ -1,5 +1,5 @@
 {% set name = "fenics-ffcx-ufcx" %}
-{% set version = "0.8.0" %}
+{% set version = "0.9.0.dev" %}
 
 # pins are usually updated on minor bumps:
 # basix is currently co-versioned with ffcx
@@ -11,28 +11,35 @@ package:
   version: {{ version }}
 
 source:
-  url: https://github.com/fenics/ffcx/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: 8a854782dbd119ec1c23c4522a2134d5281e7f1bd2f37d64489f75da055282e3
+  # url: https://github.com/fenics/ffcx/archive/refs/tags/v{{ version }}.tar.gz
+  # sha256: 8a854782dbd119ec1c23c4522a2134d5281e7f1bd2f37d64489f75da055282e3
+  url: https://github.com/fenics/ffcx/archive/d324f3808ebb828b71cae4afec76870417b1d0e3.tar.gz
+
 build:
-  number: 0
-  skip: true  # [win]
+  number: 1
 
 outputs:
   - name: fenics-ufcx
-    script: build-ufcx.sh
+    script: build-ufcx.sh  # [not win]
+    script: build-ufcx.bat  # [win]
     build:
       noarch: generic
       ignore_run_exports:
         # we don't use the compiler, but cmake still needs it
-        - {{ compiler("c") }}  # [linux]
+        - {{ compiler("c") }}
+        - {{ stdlib("c") }}
     requirements:
       build:
         - cmake
-        - make
-        - {{ compiler("c") }}  # [linux]
-        - {{ stdlib("c") }}    # [linux]
+        - make  # [not win]
+        - {{ compiler("c") }}
+        - {{ stdlib("c") }}
+      run:
+        - __unix  # [not win]
+        - __win  # [win]
     test:
-      script: test-ufcx.sh
+      script: test-ufcx.sh  # [not win]
+      script: test-ufcx.bat  # [win]
       files:
         - test-ufcx
       requires:
@@ -41,12 +48,16 @@ outputs:
         - make
         - {{ compiler("cxx") }}
       commands:
-        - test -f ${PREFIX}/include/ufcx.h
-        - pkg-config --cflags ufcx
+        - test -f ${PREFIX}/include/ufcx.h  # [not win]
+        - if not exist %LIBRARY_PREFIX%\include\ufcx.h  (exit 1)  # [win]
+        - pkg-config --cflags ufcx  # [not win]
   - name: fenics-ffcx
+    script: build-ffcx-py.sh  # [not win]
+    script: build-ffcx-py.bat  # [win]
     build:
-      script: $PYTHON -m pip install -vv --no-deps .
       noarch: python
+      entry_points:
+        - ffcx = ffcx:__main__.main
     requirements:
       host:
         - python >=3.9
@@ -58,20 +69,22 @@ outputs:
         - setuptools
         - numpy >=1.21
         - cffi
-        - fenics-basix {{ major_minor }}.*
+        - fenics-basix ==0.9.0.dev
         - fenics-ufl {{ ufl_version }}.*
     test:
       source_files:
         - test
       requires:
         - pip
+        - numba
         - pytest >=6
+        - sympy
+        - pygraphviz
         - {{ compiler("c") }}
-        - {{ compiler("cxx") }}
       imports:
         - ffcx
       commands:
-        - pytest -v test/test_jit_expression.py
+        - pytest -v test
 
 about:
   home: https://fenicsproject.org

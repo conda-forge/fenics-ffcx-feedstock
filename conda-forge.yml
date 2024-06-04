@@ -1,6 +1,12 @@
+azure:
+  store_build_artifacts: true  
+channel_priority: flexible
 github:
   branch_name: main
   tooling_branch_name: main
 conda_forge_output_validation: true
 conda_build:
   pkg_format: '2'
+noarch_platforms:
+  - linux_64
+  - win_64
