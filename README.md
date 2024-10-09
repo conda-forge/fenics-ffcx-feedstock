@@ -11,7 +11,7 @@ Summary: The FEniCSx Form Compiler
 
 Development: https://github.com/fenics/ffcx
 
-Documentation: https://docs.fenicsproject.org/ffcx/v0.8.0/
+Documentation: https://docs.fenicsproject.org/ffcx/v0.9.0/
 
 FFCx is a new version of the FEniCS Form Compiler.
 It is being actively developed and is compatible with DOLFINx.
