@@ -4,7 +4,7 @@
 # pins are usually updated on minor bumps:
 # basix is currently co-versioned with ffcx
 {% set major_minor = version.rsplit(".", 1)[0] %}
-{% set ufl_version = "2024.1" %}
+{% set ufl_version = "2024.2" %}
 
 package:
   name: {{ name|lower }}
@@ -15,24 +15,29 @@ source:
   sha256: afa517272a3d2249f513cb711c50b77cf8368dd0b8f5ea4b759142229204a448
 build:
   number: 0
-  skip: true  # [win]
 
 outputs:
   - name: fenics-ufcx
-    script: build-ufcx.sh
+    script: build-ufcx.sh  # [not win]
+    script: build-ufcx.bat  # [win]
     build:
       noarch: generic
-      ignore_run_exports:
+      ignore_run_exports_from:
         # we don't use the compiler, but cmake still needs it
-        - {{ compiler("c") }}  # [linux]
+        - {{ compiler("c") }}
+        - {{ stdlib("c") }}
     requirements:
       build:
         - cmake
-        - make
-        - {{ compiler("c") }}  # [linux]
-        - {{ stdlib("c") }}    # [linux]
+        - make  # [not win]
+        - {{ compiler("c") }}
+        - {{ stdlib("c") }}
+      run:
+        - __unix  # [not win]
+        - __win  # [win]
     test:
-      script: test-ufcx.sh
+      script: test-ufcx.sh  # [not win]
+      script: test-ufcx.bat  # [win]
       files:
         - test-ufcx
       requires:
@@ -41,12 +46,16 @@ outputs:
         - make
         - {{ compiler("cxx") }}
       commands:
-        - test -f ${PREFIX}/include/ufcx.h
-        - pkg-config --cflags ufcx
+        - test -f ${PREFIX}/include/ufcx.h  # [not win]
+        - if not exist %LIBRARY_PREFIX%\include\ufcx.h  (exit 1)  # [win]
+        - pkg-config --cflags ufcx  # [not win]
   - name: fenics-ffcx
+    script: build-ffcx-py.sh  # [not win]
+    script: build-ffcx-py.bat  # [win]
     build:
-      script: $PYTHON -m pip install -vv --no-deps .
       noarch: python
+      entry_points:
+        - ffcx = ffcx:__main__.main
     requirements:
       host:
         - python >=3.9
@@ -65,13 +74,15 @@ outputs:
         - test
       requires:
         - pip
+        - numba
         - pytest >=6
+        - sympy
+        - pygraphviz
         - {{ compiler("c") }}
-        - {{ compiler("cxx") }}
       imports:
         - ffcx
       commands:
-        - pytest -v test/test_jit_expression.py
+        - pytest -v test
 
 about:
   home: https://fenicsproject.org
