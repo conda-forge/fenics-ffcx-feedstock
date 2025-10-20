@@ -73,7 +73,7 @@ outputs:
         - wheel
       run:
         - python >=${{ python_min }}
-        - setuptools
+        - setuptools >=77.0.3
         - numpy >=1.21
         - cffi
         - fenics-basix ${{ major_minor }}.*
