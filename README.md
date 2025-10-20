@@ -3,7 +3,7 @@ About fenics-ffcx-feedstock
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/fenics-ffcx-feedstock/blob/main/LICENSE.txt)
 
-Home: https://fenicsproject.org
+Home: https://fenicsproject.org/
 
 Package license: LGPL-3.0-or-later
 
@@ -21,7 +21,6 @@ From a high-level description of the form in the Unified Form Language (UFL),
 it generates efficient low-level C code that can be used to assemble the corresponding discrete operator (tensor).
 In particular, a bilinear form may be assembled into a matrix and a linear form may be assembled into a vector.
 FFCx may be used either from the command line (by invoking the ffcx command) or as a Python module (import ffcx).
-
 
 Current build status
 ====================
