@@ -32,6 +32,7 @@ outputs:
           then: make
         - ${{ compiler("c") }}
         - ${{ stdlib("c") }}
+      host: []
       run:
         - if: not win
           then: __unix
