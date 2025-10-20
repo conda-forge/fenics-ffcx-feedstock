@@ -1,10 +1,11 @@
 setlocal EnableDelayedExpansion
 
+:: rattler-build bug: %LIBRARY_PREFIX% not defined
+
 cmake -G "NMake Makefiles" ^
   %CMAKE_ARGS% ^
   -DCMAKE_BUILD_TYPE=Release ^
-  -DCMAKE_INSTALL_PREFIX="%LIBRARY_PREFIX%" ^
-  -DCMAKE_PREFIX_PATH:PATH="%LIBRARY_PREFIX%" ^
+  -DCMAKE_INSTALL_PREFIX="%PREFIX%\Library" ^
   -B build-dir ^
   -S cmake/
 
