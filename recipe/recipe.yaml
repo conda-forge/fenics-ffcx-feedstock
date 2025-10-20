@@ -72,7 +72,7 @@ outputs:
         - setuptools >=62
         - wheel
       run:
-        - python
+        - python >=${{ python_min }}
         - setuptools
         - numpy >=1.21
         - cffi
@@ -117,4 +117,3 @@ extra:
   feedstock-name: fenics-ffcx
   recipe-maintainers:
     - minrk
-
