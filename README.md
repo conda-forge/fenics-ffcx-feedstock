@@ -3,7 +3,7 @@ About fenics-ffcx-feedstock
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/fenics-ffcx-feedstock/blob/main/LICENSE.txt)
 
-Home: https://fenicsproject.org
+Home: https://fenicsproject.org/
 
 Package license: LGPL-3.0-or-later
 
@@ -11,7 +11,7 @@ Summary: The FEniCSx Form Compiler
 
 Development: https://github.com/fenics/ffcx
 
-Documentation: https://docs.fenicsproject.org/ffcx/v0.9.0/
+Documentation: https://docs.fenicsproject.org/ffcx/v0.10.0/
 
 FFCx is a new version of the FEniCS Form Compiler.
 It is being actively developed and is compatible with DOLFINx.
@@ -21,7 +21,6 @@ From a high-level description of the form in the Unified Form Language (UFL),
 it generates efficient low-level C code that can be used to assemble the corresponding discrete operator (tensor).
 In particular, a bilinear form may be assembled into a matrix and a linear form may be assembled into a vector.
 FFCx may be used either from the command line (by invoking the ffcx command) or as a Python module (import ffcx).
-
 
 Current build status
 ====================
@@ -113,12 +112,12 @@ it is possible to build and upload installable packages to the
 [conda-forge](https://anaconda.org/conda-forge) [anaconda.org](https://anaconda.org/)
 channel for Linux, Windows and OSX respectively.
 
-To manage the continuous integration and simplify feedstock maintenance
+To manage the continuous integration and simplify feedstock maintenance,
 [conda-smithy](https://github.com/conda-forge/conda-smithy) has been developed.
 Using the ``conda-forge.yml`` within this repository, it is possible to re-render all of
 this feedstock's supporting files (e.g. the CI configuration files) with ``conda smithy rerender``.
 
-For more information please check the [conda-forge documentation](https://conda-forge.org/docs/).
+For more information, please check the [conda-forge documentation](https://conda-forge.org/docs/).
 
 Terminology
 ===========
@@ -145,7 +144,7 @@ merged, the recipe will be re-built and uploaded automatically to the
 everybody to install and use from the `conda-forge` channel.
 Note that all branches in the conda-forge/fenics-ffcx-feedstock are
 immediately built and any created packages are uploaded, so PRs should be based
-on branches in forks and branches in the main repository should only be used to
+on branches in forks, and branches in the main repository should only be used to
 build distinct package versions.
 
 In order to produce a uniquely identifiable distribution:
