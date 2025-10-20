@@ -82,11 +82,15 @@ outputs:
       - python:
           imports:
             - ffcx
+          python_version:
+            - ${{ python_min }}.*
+            - "3.13.*"
       - files:
           source:
             - test
         requirements:
           run:
+            - python ${{ python_min }}.*
             - pip
             - numba
             - pytest
