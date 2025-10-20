@@ -47,7 +47,9 @@ outputs:
           include:
             - ufcx.h
       - script:
-          file: test-ufcx
+          # rattler-build bug: executes .sh on Windows with .bat
+          # for noarch: generic package
+          file: test-ufcx${{ '.bat' if win else '' }}
         files:
           recipe:
             - test-ufcx/

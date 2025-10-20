@@ -4,7 +4,6 @@ cmake -G "NMake Makefiles" ^
   -B build-dir ^
   -DCMAKE_BUILD_TYPE=Release ^
   -DCMAKE_INSTALL_PREFIX="%PREFIX%" ^
-  -DCMAKE_PREFIX_PATH:PATH="%LIBRARY_PREFIX%" ^
   test-ufcx
 
 if errorlevel 1 exit 1
