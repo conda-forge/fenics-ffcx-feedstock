@@ -6,7 +6,7 @@ context:
   name: fenics-ffcx-ufcx
   version: 0.10.0
   major_minor: "${{ (version | split('.'))[:2] | join('.') }}"
-  ufl_version: 2024.2
+  ufl_version: "2025.2"
 
 recipe:
   name: ${{ name|lower }}
