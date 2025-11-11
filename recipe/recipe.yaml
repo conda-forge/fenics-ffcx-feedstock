@@ -4,7 +4,7 @@ schema_version: 1
 
 context:
   name: fenics-ffcx-ufcx
-  version: 0.10.0
+  version: "0.10.1"
   major_minor: "${{ (version | split('.'))[:2] | join('.') }}"
   ufl_version: "2025.2"
 
@@ -14,7 +14,7 @@ recipe:
 
 source:
   url: https://github.com/fenics/ffcx/archive/refs/tags/v${{ version }}.tar.gz
-  sha256: 8006c97e642978c3d0373b092d8df712015f692ccbb6b4df13e62383ab2fb649
+  sha256: 316a6356125b8fae1bf6ffb62c6690381df94e1723bc1aa73bcba0a7b062d0ed
 
 build:
   number: 0
@@ -36,8 +36,7 @@ outputs:
       run:
         - if: not win
           then: __unix
-        - if: win
-          then: __win
+          else: __win
       ignore_run_exports:
         from_package:
           - ${{ compiler("c") }}
