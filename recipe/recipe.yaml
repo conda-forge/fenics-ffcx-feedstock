@@ -4,7 +4,7 @@ schema_version: 1
 
 context:
   name: fenics-ffcx-ufcx
-  version: "0.10.1"
+  version: "0.10.1.post0"
   major_minor: "${{ (version | split('.'))[:2] | join('.') }}"
   ufl_version: "2025.2"
 
@@ -14,7 +14,7 @@ recipe:
 
 source:
   url: https://github.com/fenics/ffcx/archive/refs/tags/v${{ version }}.tar.gz
-  sha256: 316a6356125b8fae1bf6ffb62c6690381df94e1723bc1aa73bcba0a7b062d0ed
+  sha256: 91e15e2586390d0a0b0e9993d63b47b7ae9657e5141fc30271291ea1a2d55d5e
 
 build:
   number: 0
