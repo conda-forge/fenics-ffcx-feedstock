@@ -29,7 +29,8 @@ outputs:
         file: build-ufcx
         env: 
           # workaround https://github.com/prefix-dev/rattler-build/issues/2475
-          target_platform: ${{ 'win-64' if win else 'linux-64' }}
+          ProgramFiles: ${{ env.get("ProgramFiles", default="") }}
+          ProgramFiles(x86): ${{ env.get("ProgramFiles(x86)", default="") }}
     requirements:
       build:
         - cmake
