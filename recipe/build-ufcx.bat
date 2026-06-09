@@ -1,9 +1,10 @@
-setlocal EnableDelayedExpansion
+CALL VC\Auxiliary\Build\vcvars64.bat
+where cl.exe
 
-cmake -G "NMake Makefiles" ^
-  %CMAKE_ARGS% ^
+cmake -G "Ninja" ^
   -DCMAKE_BUILD_TYPE=Release ^
   -DCMAKE_INSTALL_PREFIX="%PREFIX%" ^
+  -DCMAKE_C_COMPILER=cl.exe ^
   -B build-dir ^
   -S cmake/
 

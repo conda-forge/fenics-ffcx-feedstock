@@ -1,6 +1,7 @@
 set -eux
 
 cmake -B build \
+  -G Ninja \
   -DCMAKE_INSTALL_PREFIX=$PREFIX \
   test-ufcx
 

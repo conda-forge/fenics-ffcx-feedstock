@@ -4,9 +4,10 @@ schema_version: 1
 
 context:
   name: fenics-ffcx-ufcx
-  version: "0.10.1"
+  version: "0.11.0"
   major_minor: "${{ (version | split('.'))[:2] | join('.') }}"
-  ufl_version: "2025.2"
+  ufl_version: "2026.1"
+  python_min: "3.11"
 
 recipe:
   name: ${{ name|lower }}
@@ -14,22 +15,26 @@ recipe:
 
 source:
   url: https://github.com/fenics/ffcx/archive/refs/tags/v${{ version }}.tar.gz
-  sha256: 316a6356125b8fae1bf6ffb62c6690381df94e1723bc1aa73bcba0a7b062d0ed
+  sha256: 7df1c086c0398b72343a5f047c7e6aa17ea05f1ba123e3e0ca858d6a133b13bd
 
 build:
-  number: 1
+  number: 0
 
 outputs:
   - package:
       name: fenics-ufcx
     build:
       noarch: generic
-      script: build-ufcx
+      script:
+        file: build-ufcx
+        env: 
+          # workaround https://github.com/prefix-dev/rattler-build/issues/2475
+          ProgramFiles: ${{ env.get("ProgramFiles", default="") }}
+          ProgramFiles(x86): ${{ env.get("ProgramFiles(x86)", default="") }}
     requirements:
       build:
         - cmake
-        - if: not win
-          then: make
+        - ninja
         - ${{ compiler("c") }}
         - ${{ stdlib("c") }}
       host: []
@@ -49,6 +54,9 @@ outputs:
           # rattler-build bug: executes .sh on Windows with .bat
           # for noarch: generic package
           file: test-ufcx${{ '.bat' if win else '' }}
+          env:
+            # workaround https://github.com/prefix-dev/rattler-build/issues/2475
+            target_platform: ${{ 'win-64' if win else 'linux-64' }}
         files:
           recipe:
             - test-ufcx/
@@ -56,7 +64,7 @@ outputs:
           run:
             - pkg-config
             - cmake
-            - make
+            - ninja
             - ${{ compiler("cxx") }}
   - package:
       name: fenics-ffcx
@@ -86,7 +94,7 @@ outputs:
             - ffcx
           python_version:
             - ${{ python_min }}.*
-            - "3.13.*"
+            - "3.14.*"
       - files:
           source:
             - test
@@ -100,7 +108,7 @@ outputs:
             - pygraphviz
             - ${{ compiler("c") }}
         script:
-          - pytest -v -k "not bilinear" test
+          - python -m pytest -v -k "not bilinear" test
 
 about:
   summary: The FEniCSx Form Compiler

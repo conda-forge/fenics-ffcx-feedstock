@@ -11,7 +11,7 @@ Summary: The FEniCSx Form Compiler
 
 Development: https://github.com/fenics/ffcx
 
-Documentation: https://docs.fenicsproject.org/ffcx/v0.10.1/
+Documentation: https://docs.fenicsproject.org/ffcx/v0.11.0/
 
 FFCx is a new version of the FEniCS Form Compiler.
 It is being actively developed and is compatible with DOLFINx.
@@ -26,10 +26,11 @@ Current build status
 ====================
 
 
-<table><tr><td>All platforms:</td>
+<table><tr>
+    <td>All platforms:</td>
     <td>
-      <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=16329&branchName=main">
-        <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/fenics-ffcx-feedstock?branchName=main">
+      <a href="https://github.com/conda-forge/fenics-ffcx-feedstock/actions/workflows/conda-build.yml">
+        <img src="https://github.com/conda-forge/fenics-ffcx-feedstock/actions/workflows/conda-build.yml/badge.svg?event=push&branch=main">
       </a>
     </td>
   </tr>
