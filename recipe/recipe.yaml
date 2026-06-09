@@ -108,7 +108,7 @@ outputs:
             - pygraphviz
             - ${{ compiler("c") }}
         script:
-          - python3 -m pytest -v -k "not bilinear" test
+          - python -m pytest -v -k "not bilinear" test
 
 about:
   summary: The FEniCSx Form Compiler
