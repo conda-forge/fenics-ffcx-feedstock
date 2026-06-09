@@ -29,8 +29,7 @@ outputs:
     requirements:
       build:
         - cmake
-        - if: not win
-          then: make
+        - ninja
         - ${{ compiler("c") }}
         - ${{ stdlib("c") }}
       host: []
@@ -57,7 +56,7 @@ outputs:
           run:
             - pkg-config
             - cmake
-            - make
+            - ninja
             - ${{ compiler("cxx") }}
   - package:
       name: fenics-ffcx
