@@ -1,5 +1,3 @@
-setlocal EnableDelayedExpansion
-
 cmake -G "Ninja" ^
   -DCMAKE_BUILD_TYPE=Release ^
   -DCMAKE_INSTALL_PREFIX="%PREFIX%" ^
