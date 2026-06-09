@@ -7,6 +7,7 @@ context:
   version: "0.11.0"
   major_minor: "${{ (version | split('.'))[:2] | join('.') }}"
   ufl_version: "2026.1"
+  python_min: "3.11"
 
 recipe:
   name: ${{ name|lower }}
@@ -86,7 +87,7 @@ outputs:
             - ffcx
           python_version:
             - ${{ python_min }}.*
-            - "3.13.*"
+            - "3.14.*"
       - files:
           source:
             - test
