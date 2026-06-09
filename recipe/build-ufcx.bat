@@ -1,5 +1,4 @@
-set CC=
-set CXX=
+CALL VC\Auxiliary\Build\vcvars64.bat
 where cl.exe
 
 cmake -G "Ninja" ^
