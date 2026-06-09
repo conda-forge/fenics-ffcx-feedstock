@@ -25,7 +25,11 @@ outputs:
       name: fenics-ufcx
     build:
       noarch: generic
-      script: build-ufcx
+      script:
+        file: build-ufcx
+        env: 
+          # workaround https://github.com/prefix-dev/rattler-build/issues/2475
+          target_platform: ${{ 'win-64' if win else 'linux-64' }}
     requirements:
       build:
         - cmake
@@ -49,6 +53,9 @@ outputs:
           # rattler-build bug: executes .sh on Windows with .bat
           # for noarch: generic package
           file: test-ufcx${{ '.bat' if win else '' }}
+          env:
+            # workaround https://github.com/prefix-dev/rattler-build/issues/2475
+            target_platform: ${{ 'win-64' if win else 'linux-64' }}
         files:
           recipe:
             - test-ufcx/
