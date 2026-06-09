@@ -1,7 +1,12 @@
+set CC=
+set CXX=
+where cl.exe
+
 cmake -G "Ninja" ^
   -DCMAKE_BUILD_TYPE=Release ^
   -DCMAKE_INSTALL_PREFIX="%PREFIX%" ^
   -B build-dir ^
+  --trace ^
   -S cmake/
 
 if errorlevel 1 exit 1
