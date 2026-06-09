@@ -6,7 +6,6 @@ cmake -G "Ninja" ^
   -DCMAKE_INSTALL_PREFIX="%PREFIX%" ^
   -DCMAKE_C_COMPILER=cl.exe ^
   -B build-dir ^
-  --trace ^
   -S cmake/
 
 if errorlevel 1 exit 1
